@@ -84,6 +84,13 @@ export class MapHomeCtrl {
     });
     alert.present();
   }
+    
+  /**
+   * 添加Marker
+   */
+  initMarker(){
+    
+  }
 
   /**
    * 跳转至附近控制器

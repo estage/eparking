@@ -11,7 +11,7 @@ import {MapService} from "../pages/map/map.service";
 import { Geolocation } from '@ionic-native/geolocation';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
+import {HttpModule} from 'angular2/http';
 
 @NgModule({
   declarations: [
@@ -24,6 +24,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp, {
       backButtonText: '',
       iconMode: 'ios',

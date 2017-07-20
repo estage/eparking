@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {Geolocation, Geoposition} from '@ionic-native/geolocation';
 import {MapConst} from './map.const';
+import 'rxjs/add/operator/map';
 
 export interface IMapOptions {
   lat:number;
@@ -17,8 +18,9 @@ export class MapService {
   private element:Element = null;
   marker:Array<any> = [];
   windowsArr:Array<any> = [];
+  baseUrl:string = "";
 
-  constructor(private geoloaction: Geolocation) {
+  constructor(private geoloaction: Geolocation, private http: Http) {
   }
 
   /***
@@ -148,20 +150,6 @@ export class MapService {
     });
   }
 
-  // /***
-  //  * create Place Autocomplete
-  //  * ref: https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete
-  //  * @param addressEl
-  //  * @returns {Observable}
-  //  */
-  // public displayPosition(lng: number, lat: number):Observable<any> {
-  //   return new Observable((sub:any) => {
-  //     const lngLat = new AMap.LngLat(lng, lat);
-  //     this.map.setCenter(lngLat);
-  //     sub.next();
-  //     sub.complete();
-  //   });
-  // }
 
   getGeolocationByAMap():Observable<any> {
     return new Observable((sub:any) => {
@@ -452,4 +440,22 @@ export class MapService {
     s.push("电话：" + tel);
     return '<div style="font-size: 12px;">' + s.join("<br>") + '</div>';
   }
+
+  /**
+   * 获取Marker数据
+   */
+  getCases(){
+    const headerDict = {
+                 'Content-Type': 'application/json',
+                 'Accept': 'application/json',
+                 'Access-Control-Allow-Headers': 'Content-Type',
+                 }
+    const headerObj = {                                                                                                                                                                                 
+                headers: new Headers(headerDict), 
+                };
+    return this.http.get(this.baseUrl).map(res => res.json());
+  }
+
+ 
+
 }
