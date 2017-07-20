@@ -264,6 +264,7 @@ export class MapService {
         });  //构造地点查询类
 
         placeSearch.setCity(place.adcode);
+        placeSearch.setPageSize(1);
         placeSearch.search(place.name, (status, result) => {
           console.log("placeSearch success");
           if ('complete' === status && 'OK' === result.info) {
@@ -279,6 +280,7 @@ export class MapService {
             sub.error(result);
           }
         });
+        
       });
     });
   }
