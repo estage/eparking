@@ -3,14 +3,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { TabsPage } from '../pages/tabs/tabs';
-import {MapHomeCtrl} from "../pages/map/map-home";
-import {SearchCtrl} from "../pages/map/search";
-import {NearbyCtrl} from "../pages/map/nearby";
-import {MapCtrl} from "../pages/map/map";
-import {MapService} from "../pages/map/map.service";
+import { MapHomeCtrl } from "../pages/map/map-home";
+import { SearchCtrl } from "../pages/map/search";
+import { NearbyCtrl } from "../pages/map/nearby";
+import { MapCtrl } from "../pages/map/map";
+import { MapService } from "../pages/map/map.service";
 import { Geolocation } from '@ionic-native/geolocation';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { Http, HttpModule } from '@angular/http';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp, {
       backButtonText: '',
       iconMode: 'ios',
@@ -44,8 +46,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MapCtrl
   ],
   providers: [
-    Geolocation,StatusBar, SplashScreen,
-    MapService, {provide: ErrorHandler, useClass: IonicErrorHandler}
+    Geolocation, StatusBar, SplashScreen,
+    MapService, { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
-export class AppModule {}
+export class AppModule { }

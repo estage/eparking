@@ -1,21 +1,21 @@
-import {Component} from '@angular/core';
-import {NavController, Platform, LoadingController, Loading, AlertController} from 'ionic-angular';
-import {MapService} from "./map.service";
-import {Observable} from 'rxjs/observable';
-import {NearbyCtrl} from "./nearby";
-import { Cordova}  from 'cordova-plugin-alipay'
+import { Component } from '@angular/core';
+import { NavController, Platform, LoadingController, Loading, AlertController } from 'ionic-angular';
+import { MapService } from "./map.service";
+import { Observable } from 'rxjs/observable';
+import { NearbyCtrl } from "./nearby";
+
 @Component({
   templateUrl: 'map-home.html'
 })
 export class MapHomeCtrl {
-  loader:Loading;
+  loader: Loading;
   private localized: boolean = false;
 
-  constructor(public loadingCtrl:LoadingController,
-              private navCtrl: NavController,
-              private platform:Platform,
-              private mapService: MapService,
-              protected alertCtrl: AlertController) {
+  constructor(public loadingCtrl: LoadingController,
+    private navCtrl: NavController,
+    private platform: Platform,
+    private mapService: MapService,
+    protected alertCtrl: AlertController) {
   }
 
   ngOnInit() {
@@ -52,7 +52,7 @@ export class MapHomeCtrl {
    * 获取当前定位
    */
   private locate(): Observable<any> {
-    return new Observable((sub:any) => {
+    return new Observable((sub: any) => {
       this.mapService.displayCurrentPosition().subscribe(data => {
         console.log("displayCurrentPosition success");
         this.loader.dismiss();
@@ -85,14 +85,14 @@ export class MapHomeCtrl {
     });
     alert.present();
   }
-    
+
   /**
    * 添加Marker
    */
-  initMarker(){
+  initMarker() {
     console.log("start get markers");
     console.log(this.mapService.getMarkers());
-    
+
   }
 
   /**
@@ -102,8 +102,8 @@ export class MapHomeCtrl {
     this.navCtrl.push(NearbyCtrl);
   }
 
-  alipay(){
-    var payInfo ="test 支付宝"
-    Cordova.plugins.AliPay.pay(payInfo,function success(e){},function error(e){});
+  alipay() {
+    var payInfo = "test 支付宝";
+    // Cordova.plugins.AliPay.pay(payInfo,function success(e){},function error(e){});
   }
 }

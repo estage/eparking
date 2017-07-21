@@ -94,4 +94,7 @@
     <plugin name="cordova-plugin-geolocation" spec="^2.4.3" />
     <plugin name="cordova-plugin-camera" spec="^2.4.1" />
     <plugin name="com.synconset.imagepicker" spec="https://github.com/Telerik-Verified-Plugins/ImagePicker.git" />
+    <plugin name="cordova-alipay-base" spec="0.0.1">
+        <variable name="ALI_PID" value="2088711643087441" />
+    </plugin>
 </widget>
