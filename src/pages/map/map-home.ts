@@ -3,7 +3,7 @@ import {NavController, Platform, LoadingController, Loading, AlertController} fr
 import {MapService} from "./map.service";
 import {Observable} from 'rxjs/observable';
 import {NearbyCtrl} from "./nearby";
-
+import { Cordova}  from 'cordova-plugin-alipay'
 @Component({
   templateUrl: 'map-home.html'
 })
@@ -44,6 +44,7 @@ export class MapHomeCtrl {
       }, error => {
         console.log(error);
       });
+
     });
   }
 
@@ -89,6 +90,8 @@ export class MapHomeCtrl {
    * 添加Marker
    */
   initMarker(){
+    console.log("start get markers");
+    console.log(this.mapService.getMarkers());
     
   }
 
@@ -97,5 +100,10 @@ export class MapHomeCtrl {
    */
   goToNearbyCtrl() {
     this.navCtrl.push(NearbyCtrl);
+  }
+
+  alipay(){
+    var payInfo ="test 支付宝"
+    Cordova.plugins.AliPay.pay(payInfo,function success(e){},function error(e){});
   }
 }

@@ -3,6 +3,7 @@ import {Observable} from 'rxjs/Observable';
 import {Geolocation, Geoposition} from '@ionic-native/geolocation';
 import {MapConst} from './map.const';
 import 'rxjs/add/operator/map';
+import { Http ,Response} from '@angular/http';
 
 export interface IMapOptions {
   lat:number;
@@ -18,9 +19,10 @@ export class MapService {
   private element:Element = null;
   marker:Array<any> = [];
   windowsArr:Array<any> = [];
-  baseUrl:string = "";
+  baseUrl:string = "http://quants.sufe.edu.cn/parkingLot";
 
-  constructor(private geoloaction: Geolocation, private http: Http) {
+  constructor(private geoloaction: Geolocation, private _http: Http) {
+
   }
 
   /***
@@ -444,7 +446,7 @@ export class MapService {
   /**
    * 获取Marker数据
    */
-  getCases(){
+  getMarkers(){
     const headerDict = {
                  'Content-Type': 'application/json',
                  'Accept': 'application/json',
@@ -453,7 +455,7 @@ export class MapService {
     const headerObj = {                                                                                                                                                                                 
                 headers: new Headers(headerDict), 
                 };
-    return this.http.get(this.baseUrl).map(res => res.json());
+    return this._http.get(this.baseUrl).map(res => res.json());
   }
 
  
