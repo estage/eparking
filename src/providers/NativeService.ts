@@ -6,8 +6,8 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import {AppVersion} from '@ionic-native/app-version';
 import {Camera, CameraOptions} from '@ionic-native/camera';
 import {Toast} from '@ionic-native/toast';
-import {File, FileEntry} from '@ionic-native/file';
-import {Transfer, TransferObject} from '@ionic-native/transfer';
+import {File} from '@ionic-native/file';
+//import {Transfer, TransferObject} from '@ionic-native/file-transfer';
 import {InAppBrowser} from '@ionic-native/in-app-browser';
 import {ImagePicker} from '@ionic-native/image-picker';
 import {Network} from '@ionic-native/network';
@@ -34,8 +34,9 @@ export class NativeService {
               private appVersion: AppVersion,
               private camera: Camera,
               private toast: Toast,
-              private transfer: Transfer,
+              //private transfer: Transfer,
               private file: File,
+              //private fileEntry FileEntry,
               private inAppBrowser: InAppBrowser,
               private imagePicker: ImagePicker,
               private network: Network,
@@ -124,22 +125,22 @@ export class NativeService {
       });
       alert.present();
 
-      const fileTransfer: TransferObject = this.transfer.create();
-      const apk = this.file.externalRootDirectory + 'android.apk'; //apk保存的目录
+      //const fileTransfer: TransferObject = this.transfer.create();
+      //const apk = this.file.externalRootDirectory + 'android.apk'; //apk保存的目录
 
-      fileTransfer.download(APK_DOWNLOAD, apk).then(() => {
-        window['install'].install(apk.replace('file://', ''));
-      });
+      //fileTransfer.download(APK_DOWNLOAD, apk).then(() => {
+      //  window['install'].install(apk.replace('file://', ''));
+     // });
 
-      fileTransfer.onProgress((event: ProgressEvent) => {
-        let num = Math.floor(event.loaded / event.total * 100);
-        if (num === 100) {
-          alert.dismiss();
-        } else {
-          let title = document.getElementsByClassName('alert-title')[0];
-          title && (title.innerHTML = '下载进度：' + num + '%');
-        }
-      });
+      // fileTransfer.onProgress((event: ProgressEvent) => {
+      //   let num = Math.floor(event.loaded / event.total * 100);
+      //   if (num === 100) {
+      //     alert.dismiss();
+      //   } else {
+      //     let title = document.getElementsByClassName('alert-title')[0];
+      //     title && (title.innerHTML = '下载进度：' + num + '%');
+      //   }
+      // });
     }
     if (this.isIos()) {
       this.openUrlByBrowser(APP_DOWNLOAD);
@@ -324,19 +325,20 @@ export class NativeService {
    * @param path 绝对路径
    */
   convertImgToBase64(path: string): Observable<string> {
-    return Observable.create(observer => {
-      this.file.resolveLocalFilesystemUrl(path).then((fileEnter: FileEntry) => {
-        fileEnter.file(file => {
-          let reader = new FileReader();
-          reader.onloadend = function (e) {
-            observer.next(this.result);
-          };
-          reader.readAsDataURL(file);
-        });
-      }).catch(err => {
-        this.log('convertImgToBase64:' + err);
-      });
-    });
+    // return Observable.create(observer => {
+    //   this.file.resolveLocalFilesystemUrl(path).then((fileEnter: FileEntry) => {
+    //     fileEnter.file(file => {
+    //       let reader = new FileReader();
+    //       reader.onloadend = function (e) {
+    //         observer.next(this.result);
+    //       };
+    //       reader.readAsDataURL(file);
+    //     });
+    //   }).catch(err => {
+    //     this.log('convertImgToBase64:' + err);
+    //   });
+    // });
+    return null;
   }
 
   /**
