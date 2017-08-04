@@ -1,16 +1,27 @@
 <ion-header>
   <ion-navbar color="primary">
-    <ion-title>附近</ion-title>
+    <ion-searchbar #searchbar placeholder="找车位" (ionInput)="autoComplete($event)"></ion-searchbar>
   </ion-navbar>
 </ion-header>
 
-<ion-content class="nearby-page">
+<ion-content class="home-page">
   <amap (onMapReady)="onMapReady()"></amap>
   <ion-fab right bottom>
     <button ion-fab color="primary" (click)="goToNearbyCtrl()">
       <ion-icon name="search"></ion-icon>
     </button>
-    <button ion-fab color="primary" (click)="alipay()">
-    </button>
   </ion-fab>
+  <ion-list>
+    <button ion-item *ngFor="let place of places" (click)="searchPlace(place)">
+        <ion-icon name="pin" item-left color="primary"
+                  [class.twoLine]="place.district.length!=0 && place.address.length==0"
+                  [class.threeLine]="place.district.length!=0 && place.address.length!=0">
+        </ion-icon>
+      <div>
+        <h3>{{ place.name }}</h3>
+        <p>{{ place.district }}</p>
+        <p>{{ place.address }}</p>
+      </div>
+    </button>
+  </ion-list>
 </ion-content>

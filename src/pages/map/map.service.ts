@@ -20,7 +20,6 @@ export class MapService {
   marker:Array<any> = [];
   windowsArr:Array<any> = [];
   baseUrl:string = "http://quants.sufe.edu.cn/parkingLot";
-
   constructor(private geoloaction: Geolocation, private _http: Http) {
 
   }
@@ -455,7 +454,8 @@ export class MapService {
     const headerObj = {                                                                                                                                                                                 
                 headers: new Headers(headerDict), 
                 };
-    return this._http.get(this.baseUrl).map(res => res.json());
+   // console.log(this._http.get(this.baseUrl).map(res => res.json()))
+    return this._http.get(this.baseUrl).map(response => response.json());
   }
 
  

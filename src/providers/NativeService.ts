@@ -11,7 +11,7 @@ import {File} from '@ionic-native/file';
 import {InAppBrowser} from '@ionic-native/in-app-browser';
 import {ImagePicker} from '@ionic-native/image-picker';
 import {Network} from '@ionic-native/network';
-import {AppMinimize} from "@ionic-native/app-minimize";
+//import {AppMinimize} from "@ionic-native/app-minimize";
 
 import {Position} from "../model/type";
 import {APP_DOWNLOAD, APK_DOWNLOAD, IMAGE_SIZE, QUALITY_SIZE} from "./Constants";
@@ -40,7 +40,7 @@ export class NativeService {
               private inAppBrowser: InAppBrowser,
               private imagePicker: ImagePicker,
               private network: Network,
-              private appMinimize: AppMinimize,
+              //private appMinimize: AppMinimize,
               private loadingCtrl: LoadingController,
               private globalData: GlobalData,) {
   }
@@ -83,9 +83,9 @@ export class NativeService {
   /**
    * 调用最小化app插件
    */
-  minimize(): void {
-    this.appMinimize.minimize()
-  }
+  // minimize(): void {
+  //   this.appMinimize.minimize()
+  // }
 
   /**
    * 通过浏览器打开url
